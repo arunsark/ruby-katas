@@ -34,12 +34,24 @@ class Rover
     case type
     when 'f' then @position = Array(pos_vec + dir_vec)
     when 'b' then @position = Array(pos_vec - dir_vec)
-    when 'l' then @direction = [dir_vec[1], dir_vec[0]]
+    when 'l' then @direction = [-dir_vec[1], dir_vec[0]]
     when 'r' then @direction = [dir_vec[1], -dir_vec[0]]
     end
     if @position[0] >= @grid_size[0] then @position[0] = 0 end
     if @position[0] < 0 then @position[0] = @grid_size[0] - 1 end
     if @position[1] >= @grid_size[1] then @position[1] = 0 end
     if @position[1] < 0 then @position[1] = @grid_size[1] - 1 end
+  end
+
+  def move(commands)
+    commands.split(//).each do |c|
+      make_move(type: c)
+    end
+    @position
+  end
+
+  def reset
+    @position = [0,0]
+    @direction =  str_to_vec('N')
   end
 end

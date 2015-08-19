@@ -42,6 +42,16 @@ describe Rover do
     rover.make_move(type: 'r')
     expect(rover.direction).to eq('N')
   end
+  it 'should make it W when direction is N and move is left', fast: true do
+    rover = Rover.new(direction: 'N')
+    rover.make_move(type: 'l')
+    expect(rover.direction).to eq('W')
+  end
+  it 'should make it E when direction is N and move is right', fast: true do
+    rover = Rover.new(direction: 'N')
+    rover.make_move(type: 'r')
+    expect(rover.direction).to eq('E')
+  end
   it 'should move to pos 1 if it got out of grid size' do
     rover = Rover.new(direction: 'E', position: [9,0], grid_size: [10,10])
     rover.make_move(type: 'f')
